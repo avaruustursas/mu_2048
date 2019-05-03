@@ -332,29 +332,32 @@ void draw() {
 }
 
 void keyPressed() {
-  IntList updated_state_data = new IntList();
-  if (key == CODED) {
-    if (keyCode == UP) {
-      updated_state_data = set_game_from_columns(update_game_columns_up(get_game_columns(state_data)));
-    }
-    else if (keyCode == RIGHT) {
-      updated_state_data = set_game_from_rows(update_game_rows_right(get_game_rows(state_data)));
-    }
-    else if (keyCode == DOWN) {
-      updated_state_data = set_game_from_columns(update_game_columns_down(get_game_columns(state_data)));
-    }
-    else if (keyCode == LEFT) {
-      updated_state_data = set_game_from_rows(update_game_rows_left(get_game_rows(state_data)));
-    }
-    else {
-    }
-  }
-  if(game_end(state_data)) {
-    println("game ends, full");
-    GAME_ON = false;
-  }
-  else {
-    if (state_data_changed(state_data,updated_state_data))
-      state_data = add_new_tile(updated_state_data);
+  if(key == ESC) exit();
+  {
+     IntList updated_state_data = new IntList();
+     if (key == CODED) {
+       if (keyCode == UP) {
+         updated_state_data = set_game_from_columns(update_game_columns_up(get_game_columns(state_data)));
+       }
+       else if (keyCode == RIGHT) {
+         updated_state_data = set_game_from_rows(update_game_rows_right(get_game_rows(state_data)));
+       }
+       else if (keyCode == DOWN) {
+         updated_state_data = set_game_from_columns(update_game_columns_down(get_game_columns(state_data)));
+       }
+       else if (keyCode == LEFT) {
+         updated_state_data = set_game_from_rows(update_game_rows_left(get_game_rows(state_data)));
+       }
+       else {
+       }
+     }
+     if(game_end(state_data)) {
+       println("game ends, full");
+       GAME_ON = false;
+     }
+     else {
+       if (state_data_changed(state_data,updated_state_data))
+         state_data = add_new_tile(updated_state_data);
+     }
   }
 }
